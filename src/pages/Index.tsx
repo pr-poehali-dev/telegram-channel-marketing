@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import Icon from "@/components/ui/icon";
+import { useState } from "react";
 
 const blogPosts = [
   {
@@ -30,8 +32,21 @@ const blogPosts = [
 ];
 
 const Index = () => {
+  const [email, setEmail] = useState('');
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
   const handleTelegramClick = () => {
     window.open('https://t.me/yourchannel', '_blank');
+  };
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      setIsSubscribed(true);
+      setTimeout(() => {
+        window.open('https://t.me/yourchannel', '_blank');
+      }, 500);
+    }
   };
 
   return (
@@ -145,16 +160,46 @@ const Index = () => {
               дизайне и эксплуатации домов из клееного бруса
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button 
-                size="lg"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                onClick={handleTelegramClick}
-              >
-                <Icon name="Send" className="mr-2" size={24} />
-                Подписаться на канал
-              </Button>
-            </div>
+            {!isSubscribed ? (
+              <form onSubmit={handleSubscribe} className="max-w-md mx-auto mb-6">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Input
+                    type="email"
+                    placeholder="Ваш email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="flex-1 px-6 py-6 text-lg rounded-full border-2 border-muted focus:border-accent transition-colors"
+                  />
+                  <Button 
+                    type="submit"
+                    size="lg"
+                    className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 whitespace-nowrap"
+                  >
+                    <Icon name="Send" className="mr-2" size={24} />
+                    Подписаться
+                  </Button>
+                </div>
+                <p className="text-xs text-muted-foreground mt-3">После подписки вы перейдёте в Telegram-канал</p>
+              </form>
+            ) : (
+              <div className="max-w-md mx-auto">
+                <div className="bg-accent/10 border-2 border-accent rounded-2xl p-6 mb-4 animate-scale-in">
+                  <Icon name="CheckCircle2" size={48} className="mx-auto mb-3 text-accent" />
+                  <p className="text-lg font-semibold text-foreground mb-2">Спасибо за подписку!</p>
+                  <p className="text-sm text-muted-foreground">Переходим в Telegram-канал...</p>
+                </div>
+                <Button 
+                  size="lg"
+                  variant="outline"
+                  className="w-full rounded-full"
+                  onClick={handleTelegramClick}
+                >
+                  <Icon name="Send" className="mr-2" size={20} />
+                  Открыть канал
+                </Button>
+              </div>
+            )}
 
             <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
