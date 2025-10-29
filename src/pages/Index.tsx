@@ -10,24 +10,81 @@ const blogPosts = [
     title: "Преимущества клееного бруса для строительства",
     excerpt: "Клееный брус — это современный экологичный материал, который сочетает в себе прочность, долговечность и красоту натурального дерева.",
     image: "https://cdn.poehali.dev/projects/f2c37dc0-b380-4f63-bdec-181ecb8eed2b/files/eb72aab8-9f91-46be-aad4-45a64cda1521.jpg",
-    date: "15 октября 2024",
-    readTime: "5 мин"
+    date: "25 октября 2024",
+    readTime: "5 мин",
+    category: "Материалы"
   },
   {
     id: 2,
     title: "Этапы строительства дома из клееного бруса",
     excerpt: "От проектирования до новоселья — разбираем подробно все этапы строительства вашего деревянного дома.",
     image: "https://cdn.poehali.dev/projects/f2c37dc0-b380-4f63-bdec-181ecb8eed2b/files/b0a9e5fe-9759-466b-95b0-3940b7b83338.jpg",
-    date: "10 октября 2024",
-    readTime: "7 мин"
+    date: "20 октября 2024",
+    readTime: "7 мин",
+    category: "Строительство"
   },
   {
     id: 3,
     title: "Интерьер в деревянном доме: идеи и решения",
     excerpt: "Как создать уютную атмосферу в доме из клееного бруса, сохранив его природную красоту и экологичность.",
     image: "https://cdn.poehali.dev/projects/f2c37dc0-b380-4f63-bdec-181ecb8eed2b/files/a4443eb3-f021-48a9-8528-a7d04236d8b5.jpg",
-    date: "5 октября 2024",
-    readTime: "6 мин"
+    date: "15 октября 2024",
+    readTime: "6 мин",
+    category: "Дизайн"
+  },
+  {
+    id: 4,
+    title: "Как выбрать проект дома из клееного бруса",
+    excerpt: "Рассказываем, на что обратить внимание при выборе проекта: планировка, площадь, архитектурный стиль и технические особенности.",
+    image: "https://cdn.poehali.dev/projects/f2c37dc0-b380-4f63-bdec-181ecb8eed2b/files/eb72aab8-9f91-46be-aad4-45a64cda1521.jpg",
+    date: "12 октября 2024",
+    readTime: "8 мин",
+    category: "Проектирование"
+  },
+  {
+    id: 5,
+    title: "Утепление дома из клееного бруса: нужно ли?",
+    excerpt: "Разбираемся в вопросе теплоизоляции: когда дополнительное утепление необходимо, а когда можно обойтись без него.",
+    image: "https://cdn.poehali.dev/projects/f2c37dc0-b380-4f63-bdec-181ecb8eed2b/files/b0a9e5fe-9759-466b-95b0-3940b7b83338.jpg",
+    date: "8 октября 2024",
+    readTime: "5 мин",
+    category: "Утепление"
+  },
+  {
+    id: 6,
+    title: "Фундамент для дома из клееного бруса",
+    excerpt: "Какой тип фундамента выбрать для деревянного дома: ленточный, свайный или плитный. Сравниваем плюсы и минусы.",
+    image: "https://cdn.poehali.dev/projects/f2c37dc0-b380-4f63-bdec-181ecb8eed2b/files/a4443eb3-f021-48a9-8528-a7d04236d8b5.jpg",
+    date: "3 октября 2024",
+    readTime: "6 мин",
+    category: "Фундамент"
+  },
+  {
+    id: 7,
+    title: "Стоимость строительства дома из клееного бруса",
+    excerpt: "Подробный разбор затрат на строительство: материалы, работы, коммуникации. Как спланировать бюджет правильно.",
+    image: "https://cdn.poehali.dev/projects/f2c37dc0-b380-4f63-bdec-181ecb8eed2b/files/eb72aab8-9f91-46be-aad4-45a64cda1521.jpg",
+    date: "28 сентября 2024",
+    readTime: "9 мин",
+    category: "Бюджет"
+  },
+  {
+    id: 8,
+    title: "Усадка дома из клееного бруса: мифы и реальность",
+    excerpt: "Даёт ли усадку клееный брус? Сколько времени нужно ждать перед отделкой? Отвечаем на главные вопросы.",
+    image: "https://cdn.poehali.dev/projects/f2c37dc0-b380-4f63-bdec-181ecb8eed2b/files/b0a9e5fe-9759-466b-95b0-3940b7b83338.jpg",
+    date: "22 сентября 2024",
+    readTime: "5 мин",
+    category: "Технологии"
+  },
+  {
+    id: 9,
+    title: "Защита древесины: чем обработать клееный брус",
+    excerpt: "Современные способы защиты деревянного дома от влаги, грибка, насекомых и огня. Обзор лучших составов.",
+    image: "https://cdn.poehali.dev/projects/f2c37dc0-b380-4f63-bdec-181ecb8eed2b/files/a4443eb3-f021-48a9-8528-a7d04236d8b5.jpg",
+    date: "18 сентября 2024",
+    readTime: "7 мин",
+    category: "Защита"
   }
 ];
 
@@ -113,12 +170,11 @@ const Index = () => {
                 </div>
                 
                 <CardContent className="p-6">
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
-                    <span className="flex items-center gap-1">
-                      <Icon name="Calendar" size={14} />
-                      {post.date}
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">
+                      {post.category}
                     </span>
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-1 text-xs text-muted-foreground">
                       <Icon name="Clock" size={14} />
                       {post.readTime}
                     </span>
@@ -132,13 +188,19 @@ const Index = () => {
                     {post.excerpt}
                   </p>
                   
-                  <Button 
-                    variant="ghost" 
-                    className="text-primary hover:text-primary/80 p-0 h-auto font-medium group/btn"
-                  >
-                    Читать далее
-                    <Icon name="ArrowRight" size={16} className="ml-1 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
+                  <div className="flex items-center justify-between">
+                    <span className="flex items-center gap-1 text-xs text-muted-foreground">
+                      <Icon name="Calendar" size={14} />
+                      {post.date}
+                    </span>
+                    <Button 
+                      variant="ghost" 
+                      className="text-primary hover:text-primary/80 p-0 h-auto font-medium group/btn"
+                    >
+                      Читать
+                      <Icon name="ArrowRight" size={16} className="ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}
